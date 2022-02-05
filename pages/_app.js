@@ -1,6 +1,8 @@
 import '../styles/globals.css'
+import '../styles/loader.scss'
 
-function MyApp({ Component, pageProps }) {
+
+const MyApp = ({ Component, pageProps }) => {
   return <Component {...pageProps} />
 }
 
