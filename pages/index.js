@@ -1,18 +1,23 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import React from 'react'
 import dynamic from 'next/dynamic'
+import { css } from '@emotion/css';
+import Loader  from './components/Loader';
 
-const DynamicComponents = dynamic(() => import("./routes"), {
-  loading: () =>  <p>loading ...</p>
-}) 
+const main = css({
+	position: 'relative'
+})
+
+const DynamicComponents = dynamic(() => import("./components/Tabcomponent"), {
+	loading: () => <p>loading</p>
+})
 
 const Home = () => {
-  return (
-    <>
-        <DynamicComponents />
-    </>
-  )
+	return (
+		<div className={main}>
+			{/* <button onClick={() => handleGetQr(data)}>Get QR</button>
+        {qr_url && <Image alt="QR Code" src={qr_url} />} */}
+			<DynamicComponents />
+		</div>
+	)
 }
-
 export default Home;

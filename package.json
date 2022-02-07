@@ -5,8 +5,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scss": "node-sass --watch sass -o css"
   },
+  
   "dependencies": {
     "@emotion/css": "^11.7.1",
     "@emotion/react": "^11.7.1",
