@@ -5,15 +5,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scss": "node-sass --watch sass -o css"
   },
+  
   "dependencies": {
+    "@emotion/css": "^11.7.1",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-tabs": "^0.1.4",
+    "@stitches/react": "^1.2.6",
     "next": "12.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
     "eslint": "8.7.0",
-    "eslint-config-next": "12.0.9"
+    "eslint-config-next": "12.0.9",
+    "node-sass": "^6.0.1"
   }
 }
