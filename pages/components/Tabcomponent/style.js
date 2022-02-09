@@ -14,6 +14,9 @@ export const TabBackground = css`
          &:hover {
            color: ${color};
          }
+         @media (max-width: 991px) {
+           padding: 50px;
+        }
 `
 
 export const copyright = css`

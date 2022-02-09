@@ -14,7 +14,31 @@ export const headerPosition = css`
         border-top: 1px solid rgba(255,255,255,0.5);
         border-left: 1px solid rgba(255,255,255,0.5);
         border-radius: 25px;
+        /* @media (min-width: 420px) {
+        font-size: 50px;
+      } */
 `
+export const headerDashboardButtonCss = css`
+          font-size: 18px;
+          font-weight: 700;
+          color: #812435;
+          padding:0.5em;
+          text-transform: uppercase;
+          box-shadow: 0px 0px 0px #fff;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255,255,255,0.25);
+          border-top: 1px solid rgba(255,255,255,0.5);
+          border-left: 1px solid rgba(255,255,255,0.5);
+          border-radius: 25px;
+          margin-right:20px;  
+          background-image: linear-gradient(to right,pink, lightblue);
+          &:hover {
+            background-image: linear-gradient(to right,lightblue, pink);
+            box-shadow: 0px 0px 3px #fff;
+          }
+          cursor:pointer; 
+`
+
 
 export const headerLogoCss = css`
          color:#812435;
@@ -24,6 +48,12 @@ export const headerLogoCss = css`
         text-transform: uppercase;
         padding:0.3em;
         font-family: 'Poppins', sans-serif;
+        @media (max-width: 991px) {
+        font-size: 1.5em;
+        }
+         @media (max-width: 768px) {
+        font-size: 0.9em;
+        }
 `
 
 export const headerFlex = css`

@@ -4,6 +4,9 @@ import { css as ReactCss} from '@emotion/react';
 export const flexBetween = css`
   display: flex;
   justify-content: space-between;
+   @media (max-width: 991px) {
+      flex-direction: column;
+   }
 `
 
 export const formContainer = css`
@@ -18,6 +21,12 @@ export const formContainer = css`
   border-left: 1px solid rgba(255,255,255,0.5);
   margin-top:40px;
   border-radius:25px;
+  @media (max-width: 991px) {
+        width: auto;
+        margin-top: auto;
+        transform: translateX(0);
+        padding: 0.3em;
+  }
 `
 
 export const formLabel = css`
@@ -43,6 +52,7 @@ export const inputField = css`
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   font-family: 'Poppins', sans-serif;
+  
 `
 
 export const textField = css`
@@ -71,6 +81,9 @@ export const classError = css`
 export const InputGroup = ({ width = 100 }) => ReactCss`
   width: ${width}%;
   margin-bottom: 24px;
+   @media (max-width: 991px) {
+     width:100%;
+   }
 `
 
 export const getQrButton = css`
