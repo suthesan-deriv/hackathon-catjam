@@ -40,6 +40,17 @@ const FormContainer = () => {
   const [lastName, setLastNameErrorState] = React.useState(false)
   const [email, setEmailErrorState] = React.useState(false)
 
+  const validateForm = () => {
+    var a = document.querySelector('#firstName').value;
+    var b = document.querySelector('#lastName').value;
+   
+    if (a == null || a == "", b == null || b == "") {
+      return false;
+    } else{
+      return true;
+    }
+  }
+
   React.useEffect(() => {
     getImage('CatJam')
   }, [])
@@ -55,20 +66,26 @@ const FormContainer = () => {
   }
 
   const handleGetQr = (state) => {
-    setLoading(true)
-    
-    
-    getImage(state.first_name)
-    let getQr = {
-      method: 'POST',
-      body: JSON.stringify(state),
+    if (state.firstName != "" && state.lastName != "" && state.email != ""){
+
+      setLoading(true)
+
+
+      getImage(state.first_name)
+      let getQr = {
+        method: 'POST',
+        body: JSON.stringify(state),
+      }
+      fetch('api/get_qr', getQr)
+        .then((response) => response.json())
+        .then((data) => {
+          setQrUrl(data.qr_url)
+          setLoading(false);
+        });
+    }else{
+      alert('error')
     }
-    fetch('api/get_qr', getQr)
-      .then((response) => response.json())
-      .then((data) => {
-        setQrUrl(data.qr_url)
-        setLoading(false);
-      });
+   
   }
 
   const onChange = (name) => (value) => {
@@ -93,6 +110,7 @@ const FormContainer = () => {
       <div className={formContainer}>
         <InputField
           label="First Name"
+          id="firstName"
           placeholder="Enter first name"
           onChange={onChange('first_name')}
           value={state.first_name}
@@ -100,11 +118,12 @@ const FormContainer = () => {
           error="First name required"
           errorState={firstName}
           setState={setFirstNameErrorState}
-          regex={!(state.first_name.length > 0)}
+          regex={validateForm}
         />
 
         <InputField
           label="Last Name"
+          id="lastName"
           placeholder="Enter last name"
           onChange={onChange('last_name')}
           value={state.last_name}
@@ -112,7 +131,7 @@ const FormContainer = () => {
           error="Last name required"
           errorState={lastName}
           setState={setLastNameErrorState}
-          regex={!(state.last_name.length > 0)}
+          regex={validateForm}
         />
         <div className={flexBetween}>
           <InputField
@@ -196,6 +215,7 @@ const StyledWrapper = styled.div`
 
 const InputField = (props) => {
   const {
+    id,
     label,
     placeholder,
     type = 'text',
@@ -212,23 +232,22 @@ const InputField = (props) => {
       <span className={formLabel}>{label}</span>
       {type === 'text' && (
         <input
+          id={id}
           type="text"
           placeholder={placeholder}
           className={inputField}
           onChange={({ target: { value } }) => {
-            console.log(regex)
-            if (label == 'Email') {
+            
+            if (label === 'Email') {
               if (regex) {
-                console.log('set true')
                 setState(true)
               } else {
                 setState(false)
               }
             }
 
-            if (label == 'First Name') {
-              if (regex) {
-                console.log('set true')
+            if (label === 'First Name') {
+              if (value == '') {
                 setState(true)
               } else {
                 setState(false)
@@ -236,8 +255,7 @@ const InputField = (props) => {
             }
 
             if (label == 'Last Name') {
-              if (regex) {
-                console.log('set true')
+              if (value == '') {
                 setState(true)
               } else {
                 setState(false)
@@ -260,10 +278,10 @@ const InputField = (props) => {
           value={value}
         />
       )}
-      {/* {console.log(error)} */}
-      {console.log(errorState)}
+     
+      
 
-      {!!errorState ? <span className={classError}>{error}</span> : ''}
+      {!!errorState ? <span className={classError}>{error} </span> : ''}
     </StyledWrapper>
   )
         }
