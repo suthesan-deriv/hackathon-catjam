@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import BarcodeComponent from '../BarcodeComponent'
 import Loader from '../Loader'
+import AlertDialogDemo from '../RadixModal'
 
 import {
   flexBetween,

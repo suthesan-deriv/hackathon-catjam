@@ -61,7 +61,7 @@ export const headerLogoCss = css`
         }
          @media (max-width: 768px) {
         font-size: 0.9em;
-        padding:1.3em;
+            padding: 1.1em;
         }
 `
 
@@ -73,4 +73,12 @@ export const headerFlex = css`
             margin-top:0;
             
           }
+`
+
+export const deleteButtonCotainer = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1rem;
+    cursor:pointer;
 `
