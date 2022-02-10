@@ -63,6 +63,12 @@ export const headerLogoCss = css`
         font-size: 0.9em;
             padding: 1.1em;
         }
+           
+     @media (max-width: 500px) {
+         font-size: 0.9em;
+          padding: 0.3em;
+          text-align: center;
+        }
 `
 
 export const headerFlex = css`
