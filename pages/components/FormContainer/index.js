@@ -66,11 +66,12 @@ const FormContainer = () => {
   }
 
   const handleGetQr = (state) => {
-    if (state.firstName != "" && state.lastName != "" && state.email != ""){
-
+    console.log(firstName)
+    if (
+      (document.querySelector('#firstName').value != "" && document.querySelector('#firstName').value != undefined) 
+      && (document.querySelector('#lastName').value != "" && document.querySelector('#lastName').value != undefined)
+      && (document.querySelector('#email').value != "" && document.querySelector('#email').value != undefined)){
       setLoading(true)
-
-
       getImage(state.first_name)
       let getQr = {
         method: 'POST',
@@ -82,11 +83,22 @@ const FormContainer = () => {
           setQrUrl(data.qr_url)
           setLoading(false);
         });
-    }else{
-      alert('error')
-    }
+    } 
+    else
+    {
+      console.log(state.firstName)
+      if (document.querySelector('#firstName').value == "" || document.querySelector('#firstName').value == undefined){
+        setFirstNameErrorState(true);
+      }
+      if (document.querySelector('#lastName').value == "" || document.querySelector('#lastName').value == undefined){
+        setLastNameErrorState(true);
+      }
+      if (document.querySelector('#email').value == "" || document.querySelector('#email').value == undefined){
+        setEmailErrorState(true);
+      }
    
   }
+}
 
   const onChange = (name) => (value) => {
     if (name === 'work' || name === 'mobile') {
@@ -169,6 +181,7 @@ const FormContainer = () => {
         </div>
         <InputField
           label="Email"
+          id="email"
           placeholder="example@example.com"
           onChange={onChange('email')}
           regex={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(state.email)}
