@@ -36,9 +36,12 @@ const FormContainer = () => {
   const [state, setState] = React.useState(data)
   const [qr_url, setQrUrl] = useState('')
   const [gif_url, setGif] = React.useState()
+  const [firstName, setFirstNameErrorState] = React.useState(false)
+  const [lastName, setLastNameErrorState] = React.useState(false)
+  const [email, setEmailErrorState] = React.useState(false)
 
   React.useEffect(() => {
-    getImage('CatJam');
+    getImage('CatJam')
   }, [])
 
   const getImage = (name) => {
@@ -53,7 +56,7 @@ const FormContainer = () => {
 
   const handleGetQr = (state) => {
     setLoading(true)
-    getImage(state.first_name);
+    getImage(state.first_name)
     let getQr = {
       method: 'POST',
       body: JSON.stringify(state),
@@ -62,7 +65,7 @@ const FormContainer = () => {
       .then((response) => response.json())
       .then((data) => {
         setQrUrl(data.qr_url)
-        
+
         setLoading(false)
       })
   }
@@ -94,6 +97,9 @@ const FormContainer = () => {
           value={state.first_name}
           block
           error="First name required"
+          errorState={firstName}
+          setState={setFirstNameErrorState}
+          regex={!(state.first_name.length > 0)}
         />
 
         <InputField
@@ -103,6 +109,9 @@ const FormContainer = () => {
           value={state.last_name}
           block
           error="Last name required"
+          errorState={lastName}
+          setState={setLastNameErrorState}
+          regex={!(state.last_name.length > 0)}
         />
         <div className={flexBetween}>
           <InputField
@@ -142,9 +151,12 @@ const FormContainer = () => {
           label="Email"
           placeholder="example@example.com"
           onChange={onChange('email')}
+          regex={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(state.email)}
           value={state.email}
           block
           error="Email Required"
+          errorState={email}
+          setState={setEmailErrorState}
         />
         <InputField
           label="Company"
@@ -187,6 +199,9 @@ const InputField = (props) => {
     value = '',
     error = error.target.value,
     block = false,
+    regex,
+    errorState,
+    setState,
   } = props
   return (
     <StyledWrapper width={block ? 100 : 45}>
@@ -197,6 +212,34 @@ const InputField = (props) => {
           placeholder={placeholder}
           className={inputField}
           onChange={({ target: { value } }) => {
+            console.log(regex)
+            if (label == 'Email') {
+              if (regex) {
+                console.log('set true')
+                setState(true)
+              } else {
+                setState(false)
+              }
+            }
+
+            if (label == 'First Name') {
+              if (regex) {
+                console.log('set true')
+                setState(true)
+              } else {
+                setState(false)
+              }
+            }
+
+            if (label == 'Last Name') {
+              if (regex) {
+                console.log('set true')
+                setState(true)
+              } else {
+                setState(false)
+              }
+            }
+
             onChange(value)
           }}
           value={value}
@@ -213,8 +256,10 @@ const InputField = (props) => {
           value={value}
         />
       )}
+      {/* {console.log(error)} */}
+      {console.log(errorState)}
 
-      {error ? '' : <span className={classError}>{error}</span>}
+      {!!errorState ? <span className={classError}>{error}</span> : ''}
     </StyledWrapper>
   )
 }
