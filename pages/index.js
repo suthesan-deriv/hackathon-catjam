@@ -1,7 +1,7 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import { css } from '@emotion/css';
-import Loader  from './components/Loader';
+import Loader  from '../components/Loader';
 
 const main = css({
 	position: 'relative'
