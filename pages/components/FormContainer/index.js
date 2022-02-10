@@ -38,11 +38,11 @@ const FormContainer = () => {
   const [gif_url, setGif] = React.useState()
 
   React.useEffect(() => {
-    getImage()
+    getImage('CatJam');
   }, [])
 
-  const getImage = () => {
-    fetch('https://cataas.com/cat/gif/says/CatJam')
+  const getImage = (name) => {
+    fetch('https://cataas.com/cat/gif/says/' + `${name}`)
       .then((res) => res)
       .then(({ url = '', error }) => {
         if (error) throw new Error(error)
@@ -53,7 +53,7 @@ const FormContainer = () => {
 
   const handleGetQr = (state) => {
     setLoading(true)
-    console.log(state)
+    getImage(state.first_name);
     let getQr = {
       method: 'POST',
       body: JSON.stringify(state),
@@ -61,8 +61,8 @@ const FormContainer = () => {
     fetch('api/get_qr', getQr)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         setQrUrl(data.qr_url)
+        
         setLoading(false)
       })
   }

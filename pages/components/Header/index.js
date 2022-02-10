@@ -3,7 +3,8 @@ import { css, cx } from '@emotion/css';
 import {
   headerPosition,
   headerLogoCss,
-  headerFlex
+  headerFlex,
+  headerDashboardButtonCss
 } from './style'
 
 const Header = () => {
@@ -12,6 +13,9 @@ const Header = () => {
       <header className={headerPosition}>
         <a className={headerLogoCss}>QR CODE GENERATOR</a>
         <ul className={headerFlex}>
+          {/* <li className={headerDashboardButtonCss}>
+            DashBoard
+          </li> */}
         </ul>
 
       </header>
