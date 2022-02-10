@@ -61,6 +61,7 @@ export const headerLogoCss = css`
         }
          @media (max-width: 768px) {
         font-size: 0.9em;
+        padding:1.3em;
         }
 `
 
