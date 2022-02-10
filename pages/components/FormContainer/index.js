@@ -36,9 +36,11 @@ const FormContainer = () => {
   const [state, setState] = React.useState(data)
   const [qr_url, setQrUrl] = useState('')
   const [gif_url, setGif] = React.useState()
+  const [tasks, setTasks] = useState([])
 
   React.useEffect(() => {
     getImage('CatJam');
+   
   }, [])
 
   const getImage = (name) => {
@@ -52,8 +54,10 @@ const FormContainer = () => {
   }
 
   const handleGetQr = (state) => {
+    console.log(state)
     setLoading(true)
-    getImage(state.first_name);
+    
+    
     let getQr = {
       method: 'POST',
       body: JSON.stringify(state),
@@ -62,9 +66,10 @@ const FormContainer = () => {
       .then((response) => response.json())
       .then((data) => {
         setQrUrl(data.qr_url)
-        
-        setLoading(false)
-      })
+        setLoading(false);
+      });
+
+      
   }
 
   const onChange = (name) => (value) => {
@@ -165,7 +170,9 @@ const FormContainer = () => {
         <button className={getQrButton} onClick={() => handleGetQr(state)}>
           Generate QR
         </button>
+        
       </div>
+      
       <BarcodeComponent qr_url={qr_url} gif={gif_url} />
       {isLoading ? <Loader /> : ''}
     </div>

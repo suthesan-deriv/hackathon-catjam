@@ -12,11 +12,7 @@ const Header = () => {
     <div>
       <header className={headerPosition}>
         <a className={headerLogoCss}>QR CODE GENERATOR</a>
-        <ul className={headerFlex}>
-          {/* <li className={headerDashboardButtonCss}>
-            DashBoard
-          </li> */}
-        </ul>
+       
 
       </header>
     </div>
