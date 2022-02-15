@@ -1,10 +1,12 @@
 import React from 'react';
 import { css, cx } from '@emotion/css';
+import RadixModal from '../RadixModal'
 import {
   headerPosition,
   headerLogoCss,
   headerFlex,
-  headerDashboardButtonCss
+  headerDashboardButtonCss,
+  deleteButtonCotainer
 } from './style'
 
 const Header = () => {
@@ -12,11 +14,10 @@ const Header = () => {
     <div>
       <header className={headerPosition}>
         <a className={headerLogoCss}>QR CODE GENERATOR</a>
-        <ul className={headerFlex}>
-          {/* <li className={headerDashboardButtonCss}>
-            DashBoard
-          </li> */}
-        </ul>
+        <div className={deleteButtonCotainer}>
+          <RadixModal />
+        </div>
+        
 
       </header>
     </div>

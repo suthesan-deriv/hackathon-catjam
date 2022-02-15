@@ -6,6 +6,7 @@ export const flexBetween = css`
   justify-content: space-between;
    @media (max-width: 991px) {
       flex-direction: column;
+
    }
 `
 
@@ -26,6 +27,14 @@ export const formContainer = css`
         margin-top: auto;
         transform: translateX(0);
         padding: 0.3em;
+            margin-top: 85px;
+  }
+  @media (max-width: 768px) {
+        width: auto;
+        margin-top: auto;
+        transform: translateX(0);
+        padding: 0.3em;
+            margin-top: 55px;
   }
 `
 

@@ -14,9 +14,12 @@ export const headerPosition = css`
         border-top: 1px solid rgba(255,255,255,0.5);
         border-left: 1px solid rgba(255,255,255,0.5);
         border-radius: 25px;
-        /* @media (min-width: 420px) {
-        font-size: 50px;
-      } */
+        @media (max-width: 991px) {
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
 `
 export const headerDashboardButtonCss = css`
           font-size: 18px;
@@ -37,6 +40,11 @@ export const headerDashboardButtonCss = css`
             box-shadow: 0px 0px 3px #fff;
           }
           cursor:pointer; 
+          @media (max-width: 991px) {
+            font-size:0.6em
+          }
+          
+          
 `
 
 
@@ -53,6 +61,13 @@ export const headerLogoCss = css`
         }
          @media (max-width: 768px) {
         font-size: 0.9em;
+            padding: 1.1em;
+        }
+           
+     @media (max-width: 500px) {
+         font-size: 0.9em;
+          padding: 0.3em;
+          text-align: center;
         }
 `
 
@@ -60,4 +75,16 @@ export const headerFlex = css`
          display:flex;
         list-style:none;
         padding:0.3em;
+        @media (max-width: 991px) {
+            margin-top:0;
+            
+          }
+`
+
+export const deleteButtonCotainer = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1rem;
+    cursor:pointer;
 `
